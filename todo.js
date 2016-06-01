@@ -5,11 +5,11 @@ angular.module("todoApp",[])
 					{name:"Learn Angular", status:true},
 					{name:"Learn NodeJs", status:false}
 			];
-			
+			$scope.tasks = tasks;
 			$scope.taskName = "";
 			$scope.addTask = function()
 			{
-				$scope.tasks.push({name:tasks.name, status:false});
+				tasks.push({name:tasks.name, status:false});
 				console.log("Pushed successfully");
 				$scope.taskName = "";
 			}
@@ -23,21 +23,13 @@ angular.module("todoApp",[])
 				return count;
 			}
 			$scope.archive = function(){
-				var oldtask = $scope.tasks;
-				$scope.tasks = [];
+				var oldtask = tasks;
+				tasks = [];
 				for (var i = 0; i < oldtask.length; i++) {
-						if(!oldtask[i].status) $scope.tasks.push(oldtask[i]);
+						if(!oldtask[i].status) tasks.push(oldtask[i]);
 					}	
-			
+				$scope.tasks = tasks;
 			}
-			$scope.remove = function(temp){
-				var oldtask = $scope.tasks;
-				$scope.tasks = [];
-				for (var i = 0; i < oldtask.length; i++) {
-						if(oldtask[i] != temp) $scope.tasks.push(oldtask[i]);
-					}	
 			
-			}
-			$scope.tasks = tasks;
-			$scope.temp = "";
+			
 		});
